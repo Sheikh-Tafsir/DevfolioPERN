@@ -1,0 +1,34 @@
+.heromain{
+    /* background-image: url("https://i.ibb.co/X85jRHT/354480981-189794963716400-6703912243187527606-n.jpg"); */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height:100vh;
+    width:100%;
+}
+@media (min-width: 768px) {
+    .hero-writings{
+        padding-left: 2vw;
+        padding-top: 36vh;
+        background-color: rgba(0,0,0,0.6);
+        height:100%;
+    }
+    .p-hello{
+        width:5.5vw;
+        border-radius: 2px;
+        text-align: center;
+    }
+}
+@media (max-width: 767px) {
+    .hero-writings{
+        padding-left: 4vw;
+        padding-top: 36vh;
+        background-color: rgba(0,0,0,0.6);
+        height:100%;
+    }
+    .p-hello{
+        width:14vw;
+        border-radius: 2px;
+        text-align: center;
+    }
+}

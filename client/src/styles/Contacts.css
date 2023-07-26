@@ -1,0 +1,24 @@
+.contacts{
+    background-color: #212022;
+}
+@media (min-width: 767px) {
+    form input, form textarea{
+        background-color: #2b2a2b;
+        height:6vh;
+        outline:none;
+        border:none;
+        margin-bottom:1.5vh;
+        border-radius:5px;
+    }
+}
+@media (max-width: 767px) {
+    form input, form textarea{
+        background-color: #2b2a2b;
+        height:5vh;
+        width:80%;
+        outline:none;
+        border:none;
+        margin-bottom:1.5vh;
+        border-radius:5px;
+    }
+}

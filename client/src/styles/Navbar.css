@@ -1,0 +1,44 @@
+.headnavbar{
+    position:absolute;
+    height:10vh;
+    width: 100%;
+    top:0;
+    background-color: rgb(43,42,43);
+    transition: 0.3s ease;
+}
+.sticky-headnavbar{
+    position: fixed;
+    top: 0%;
+    left: 0;
+    width: 100%;
+    background-color: transparent;
+    background-color: rgb(43,42,43,0.3);
+    border-bottom: 1px solid white;
+    transition: 0.3s ease;
+}
+@media (max-width: 767px) {
+    .headnavbar-down{
+        background-color: rgb(43,42,43);
+    }
+    .navbar{
+        background-color:rgb(43,42,43);
+        width:100vw;
+        height:25vh;
+        transform: translate(-50vw,-30vh);
+        transition: linear 0.3s;
+    }
+    .navbar-down{
+        transform: translate(-50vw,10vh);
+        border-top:1px solid white;
+        border-bottom:1px solid white;
+    }
+    .navbar a{
+        font-size:1.2rem;
+        margin:auto;
+    }
+    .hamburger{
+        color:white;
+        font-size:2rem;
+        transform: translate(85vw,-5vh);
+    }
+}

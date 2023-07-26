@@ -1,0 +1,191 @@
+@media screen and (min-width: 992px) {
+    .signuppage{
+       /* background: url("https://c1.wallpaperflare.com/preview/599/420/884/winter-cold-landscape-season.jpg"); */
+        background-color:#2b2a2b; 
+        background-repeat: no-repeat;
+        background-size: 100vw 100vh;
+        overflow:hidden;
+        height:100vh;
+        width:100vw;
+    }
+    .signupform{
+        background-color: #212022;
+        width:30%;
+        height:70%;
+        text-align: center;
+        margin:auto;
+        margin-top:7%;
+        border-radius: 1%;
+        
+    }
+    .signupform h2{
+        color:white;
+        text-align: center;
+        padding-top:4vh;
+        margin-bottom:7vh;
+        font-size:5vh;
+    }
+    .signupCreds{
+        display:flex;
+        border-bottom:1.5px solid #FFFFFF;
+        width:70%;
+        height:7vh;
+        margin:auto;
+        text-align: left;
+        margin-bottom: 6%;
+        color:white;
+        background-color:#2b2a2b; 
+    }
+    .signupCredsIcons{
+        font-size: 3vmin;
+        transform: translateY(50%);
+    }
+    .signupform input{
+        color:white;
+        width:85%;
+        padding-left: 5%;
+        border:none;
+        outline: none;
+        background-color: transparent;
+        font-size: 2.5vh;
+    }
+    .signupform input::placeholder {
+        color:#bbbbbb;
+    }
+    .signupformbut{
+        background-color: #ea580c;
+        border:1px solid white;
+        color:white;
+        height:6vh;
+        width:70%;
+        font-size:2.5vh;
+        font-weight: bold;
+        transition:linear 0.1s;
+    }   
+    .signupform h3{
+        color:white;
+        font-size: 2vh;
+        margin-top:1vh ;
+        margin-bottom:2vh ;
+    }
+    .googleLoginBut{
+        text-align: center;
+        margin-bottom: 1vh;
+    }
+    .signToLog{
+        line-height: 10vh;
+        font-size: 2.2vh;
+        color:#dedede;
+        
+    }
+    .signToLog:hover{
+        color:#d10000;
+    }
+
+}
+@media screen and (max-width: 991px) {
+    .signuppage{
+        /* background: url("https://images.squarespace-cdn.com/content/v1/5bfd2cddee17598cba280a32/1604944409660-2XE4W612M1VM57MAUT5N/image.jpg?format=2500w"); */
+        background-color:#2b2a2b; 
+        background-repeat: no-repeat;
+        background-size: 100vw 100vh;
+        overflow:hidden;
+        height:100vh;
+        width:100vw;
+    }
+
+    .signupform{   
+        background-color: #212022;
+        width:80%;
+        height:70vh;
+        text-align: center;
+        margin:auto;
+        margin-top:15vh;
+        border-radius: 1%;
+    }
+
+    .signupform h2{
+        color:white;
+        text-align: center;
+        padding-top:18%;
+        margin-bottom:14%;
+        font-size:2rem;
+    }
+    .signupCreds{
+        border-bottom:1.5px solid #FFFFFF;
+        width:80%;
+        margin:auto;
+        height:7%;
+        text-align: left;
+        margin-bottom: 6%;
+        color:white;
+    }
+    .signupCredsIcons{
+        transform: translateY(20%);
+    }
+    .signupform input{
+        color:white;
+        padding-left: 4%;
+        border:none;
+        outline: none;
+        background-color: transparent;
+        font-size: 1rem;
+    }
+    .signupform input::placeholder {
+        color:#bbbbbb;
+    }
+    .signupformbut{
+        background-color: transparent;
+        border:1px solid white;
+        color:white;
+        height:2.7rem;
+        width:80%;
+        font-size:1.2rem;
+        font-weight: bold;
+        margin-bottom: 2%;
+
+    }   
+    .signupform h3{
+        color:white;
+        font-size: 1.5rem;
+        margin-top:1% ;
+        margin-bottom:2% ;
+    }
+    .googleLoginBut{
+
+        text-align: center;
+        margin-bottom: 5%;
+    }
+    .logToReg{
+        color:#dedede;
+        line-height: 10vh;
+        
+    }
+    .logToReg:hover{
+        color:#d10000;
+    }
+}
+
+
+
+.signupformbut:hover{
+    background-color: #ffffff;
+    color:black;
+}
+.signupformbut:active{
+    background-color: #ffffff;
+    color:black;
+    box-shadow:6px 5px 15px #000000;
+}
+.signToLog{
+    color:#dedede;
+}
+.signToLog:hover{
+    color:red;
+}
+.signupform p{
+    font-size:1em;
+    color:red;
+    width:100%;
+    margin-top:5%;
+}

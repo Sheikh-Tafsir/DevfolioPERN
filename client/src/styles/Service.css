@@ -1,0 +1,30 @@
+
+@media (min-width: 767px) {
+    .service{
+        background-color: #212022;
+        
+    }
+    .services{
+        background-color: #2b2a2b;
+        margin:7vh 1vw;
+        padding:2vh 2vw;
+        width:30%;
+    }
+}
+@media (max-width: 767px) {
+    .service{
+        background-color: #212022;
+        padding-bottom:1vh;
+        
+    }
+    .services{
+        background-color: #2b2a2b;
+        margin:3vh 1vw;
+        padding:3vh 4vw;
+        width:100%;
+    }
+}
+.services-icons{
+    font-size:1.3rem;
+    margin:1.5vh 0;
+}
