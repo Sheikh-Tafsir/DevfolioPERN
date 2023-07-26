@@ -34,7 +34,7 @@ const Signup = () => {
         }
 
         else{
-            Axios.post('http://localhost:8080/user/signup',
+            Axios.post(process.env.SERVER_API_URL + "/user/signup",
             {
                 name:username,
                 email:useremail,

@@ -8,6 +8,7 @@ const UserService = require('../service/UserService');
 const LoginRequest = require('../domain/LoginRequest');
 const SignupRequest = require('../domain/SignupRequest');
 const PortfolioRequest = require('../domain/PortfolioRequest');
+const ResponseUtil = require('../../common/domain/ResponseUtil');
 
 const userService = new UserService();
 
@@ -16,7 +17,9 @@ router.post('/portfolio', jsonParser, async (req, res) => {
   try {
     const portfolioRequest = new PortfolioRequest(req.body.name);
     const portfolioResponse = await userService.getUser(portfolioRequest);
-    res.json(portfolioResponse);
+    const apiResponse = ResponseUtil.createResponse(portfolioResponse.responseMessage, portfolioResponse);
+    res.status(200).json(apiResponse);
+    //res.status(apiResponse.status).json({ message: apiResponse.body.message, data: apiResponse.body });
   } 
   catch (error) {
     console.error('Error occurred:', error);
@@ -33,10 +36,18 @@ router.post('/login', jsonParser, async (req, res) => {
   try{
     const loginRequest = new LoginRequest(req.body.name, req.body.password);
     const loginResponse = await userService.login(loginRequest);
-    res.json(loginResponse);
+    //console.log(loginResponse);
+    if (loginResponse.token !== null) {
+      const apiResponse = ResponseUtil.createResponse(loginResponse.respMessage, loginResponse);
+      res.status(200).json(apiResponse);
+    } 
+    else {
+      const apiResponse = ResponseUtil.createResponse(null, null);
+      res.status(401).json(null);
+    }
   }
   catch (error) {
-    console.error(error);
+    console.error("error: "+ error);
   }
 });
 
@@ -45,7 +56,14 @@ router.post('/signup', jsonParser, async (req, res) => {
   try{
     const signupRequest = new SignupRequest(req.body.name, req.body.email, req.body.password);
     const signupResponse = await userService.signup(signupRequest);
-    res.json(signupResponse);
+    if (signupResponse.token !== null) {
+      const apiResponse = ResponseUtil.createResponse(signupResponse.respMessage, signupResponse);
+      res.status(200).json(apiResponse);
+    } 
+    else {
+      const apiResponse = ResponseUtil.createResponse(null, null);
+      res.status(401).json(null);
+    }
   }
   catch (error) {
     console.error(error);

@@ -11,12 +11,6 @@ const Homepage = () => {
   return (
     <>
     <HeromainHome/>
-      {/* <Heromain/>
-      <About/>
-      <Service/>
-      <Projects/>
-      <Contacts/> 
-      <Footer/> */}
     </>
   )
 }

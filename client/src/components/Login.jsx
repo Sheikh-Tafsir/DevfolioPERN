@@ -11,6 +11,7 @@ const Login = () => {
     const [loginStatus, setLoginStatus] = useState("");
     
     const navigate = useNavigate();
+
   
     useEffect(() => {
         //console.log(loggedIn);
@@ -19,28 +20,31 @@ const Login = () => {
     const loginUser = () => {       
         
         setLoginStatus("please wait...");
-        if(username == null || username === undefined){
+        
+        if(username === "" || username == null || username === undefined){
             setLoginStatus("Name is empty");
         }
-        else if(password == null || password === undefined){
+        else if(password === "" || password == null || password === undefined){
             setLoginStatus("password is empty");
         }
 
-        if(username==="sheikh" && password==="rub"){
-            // setLoginStatus("logging in");
-            // localStorage.setItem("localStorageUsername",username);
-            // localStorage.setItem("localStorageLoggedState",2);
-            // window.location.href = "/dashboardadmin";
-        }
+        // if(username==="sheikh" && password==="rub"){
+        //      setLoginStatus("logging in");
+        //      localStorage.setItem("localStorageUsername",username);
+        //      localStorage.setItem("localStorageLoggedState",2);
+        //      window.location.href = "/dashboardadmin";
+        // }
         else{
-            Axios.post('http://localhost:8080/user/login', 
+            Axios.post('http://localhost:3001/user/login', 
             {
                 name:username,
                 password:password
             }
             ).then((response) =>{
-                //console.log(response.data.data.token);
-                setLoginStatus(response.data);
+                //alert(JSON.stringify(response.data));
+                console.log(response);
+                console.log(response.data);
+                setLoginStatus("please wait");
                 if(response.data){
                     setLoginStatus("logging in");
                     localStorage.setItem("localStorageUsername",username);

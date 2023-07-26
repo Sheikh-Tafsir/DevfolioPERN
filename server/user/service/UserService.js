@@ -3,6 +3,7 @@ const LoginResponse = require('../domain/LoginResponse');
 const SignupResponse = require('../domain/SignupResponse');
 const PortfolioResponse = require('../domain/PortfolioResponse');
 const UserEntity = require("../domain/UserEntity");
+const AboutEntity = require('../../about/domain/AboutEntity');
 const UserRepository = require('../repository/UserRepository');
 const pool = require('../../db'); // Adjust the path if needed.
 
@@ -115,7 +116,18 @@ async function findAboutById(userid) {
     const query = 'SELECT * FROM about WHERE user_id = $1';
     const value = [userid];
     const result = await pool.query(query, value);
-    return result.rows;
+    //return result.rows;
+    const aboutEntities = result.rows.map(row => {
+      return new AboutEntity(
+        row.id,
+        row.user_id,
+        row.occupation,
+        row.description,
+        row.background_image_link,
+        row.about_image_link
+      );
+    });
+    return aboutEntities;
   } 
   catch (error) {
     throw error;
