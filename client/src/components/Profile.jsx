@@ -24,7 +24,7 @@ const Profile = () => {
 
   const savePortfolio = async (name) => {
   //alert(name);
-    const path= `${process.env.REACT_APP_API_URI}/user/portfolio`;
+    //const path= `${process.env.REACT_APP_API_URI}/user/portfolio`;
     let token = localStorage.getItem('token');
     alert(path);
     alert(token):
