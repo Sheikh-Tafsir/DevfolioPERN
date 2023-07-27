@@ -25,7 +25,7 @@ const App = () =>{
   // localStorage.setItem("localStorageUserId");
   let token = localStorage.getItem('token');
 
-  const checkToken = () => (token === 'null' || token === 'undefined');
+  const checkToken = () => (token === 'null' || token === 'undefined' || token === "");
 
   useEffect(() => {
     AOS.init();
