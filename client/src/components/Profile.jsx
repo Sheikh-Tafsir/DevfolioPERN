@@ -24,6 +24,7 @@ const Profile = () => {
 
   const savePortfolio = async (name) => {
   //alert(name);
+    alert(process.env.REACT_APP_API_URI +"/user/portfolio");
     try {
       await Axios.post(process.env.REACT_APP_API_URI +"/user/portfolio",{
         name:name,
@@ -45,13 +46,13 @@ const Profile = () => {
     savePortfolio(name);
   }, [name]);
 
-  if (loading) {
+  /*if (loading) {
     return (
       <div className="loader-container">
         <div className="loader" />
       </div>
     );
-  }
+  }*/
   return (
     <Suspense fallback={<p>Loading...</p>}>
       <HeromainProfile/>
