@@ -29,7 +29,7 @@ const Profile = () => {
     alert(path);
     //alert(token):
     try {
-      await Axios.post(process.env.REACT_APP_API_URI +"/user/portfolio",{
+      await Axios.post(path,{
         name:name,
       }).then((response) =>{
         //console.log(response);
