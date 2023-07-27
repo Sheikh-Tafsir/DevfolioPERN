@@ -38,7 +38,7 @@ const Navbar = () => {
 
   return (
     
-    <div className="flex text-sm lg:text-xs 2xl:text-lg z-10 headnavbar">
+    <div className="flex text-sm lg:text-sm 2xl:text-lg lg:pt-1 2xl:pt-0 z-10 headnavbar">
       <div className="w-1/2">
         <Link to="/"><img src={Logo} alt="logo" className="w-50 lg:w-1/3 h-2/3 lg:ml-40 mt-3"></img></Link>
         <RxHamburgerMenu className="sm:invisible hamburger" onClick={navbarChange}/>
@@ -50,7 +50,7 @@ const Navbar = () => {
           <a href="#service">Service</a>
           <a href="#portfolio">Portfolio</a>
           <a href="#contacts">Contact Me</a>
-          <Button className="bg-red-600 lg:h-8 lg:w-16 2xl:h-12 2xl:w-20 rounded-lg transform -translate-y-2" onClick={logout}>Logout</Button>
+          <Button className="bg-orange-600 lg:h-8 lg:w-16 2xl:h-12 2xl:w-20 rounded-lg transform -translate-y-2 logout-button" onClick={logout}>Logout</Button>
         </div>
         
       </div>

@@ -5,6 +5,7 @@ import Axios from 'axios';
 import '../../styles/FeaturesAdd.css'
 
 const ProjectsAdd = () => {
+    const [loading, setLoading] = useState(true);
     const [name, setName] = useState();
     const [description, setDescription] = useState();
     const [technologies, setTechnologies] = useState();
@@ -41,7 +42,7 @@ const ProjectsAdd = () => {
         setProjectAddStatus("Image link is empty");
       }
       else{
-        Axios.post('http://localhost:8080/project/create',
+        Axios.post(process.env.REACT_APP_API_URI +"/project/create",
         {
             userId:localStorageUserId,
             name:name,
@@ -54,6 +55,7 @@ const ProjectsAdd = () => {
         }
         ).then((response) =>{
             console.log(response.data);
+            setLoading(false);
             if(response.data){
               setProjectAddStatus("Project data saved");
               
@@ -66,6 +68,7 @@ const ProjectsAdd = () => {
               setProjectAddStatus(response.data);
             }
         }).catch(error => {
+          setLoading(false);
             if (error.response && error.response.status === 400) {
               setProjectAddStatus("user already exists");
             } else {

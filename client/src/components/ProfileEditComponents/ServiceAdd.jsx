@@ -5,6 +5,7 @@ import Axios from 'axios';
 import '../../styles/FeaturesAdd.css'
 
 const ServiceAdd = () => {
+    const [loading, setLoading] = useState(true);
     const [name, setName] = useState();
     const [description, setDescription] = useState();
     const [serviceAddStatus, setServiceAddStatus] = useState("");
@@ -20,13 +21,14 @@ const ServiceAdd = () => {
         setServiceAddStatus("Service description is empty");
       }
       else{
-        Axios.post('http://localhost:8080/service/create',
+        Axios.post(process.env.REACT_APP_API_URI + "/service/create",
         {
           userId:localStorageUserId,
           name:name,
           description:description,
         }
         ).then((response) =>{
+          setLoading(false);
             if(response.data){
                 setServiceAddStatus("Service data saved");
                 
@@ -39,6 +41,7 @@ const ServiceAdd = () => {
                 setServiceAddStatus(response.data);
             }
         }).catch(error => {
+          setLoading(false);
             if (error.response && error.response.status === 400) {
                 setServiceAddStatus("service already exists");
             } else {

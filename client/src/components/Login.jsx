@@ -35,7 +35,7 @@ const Login = () => {
         //      window.location.href = "/dashboardadmin";
         // }
         else{
-            Axios.post('http://localhost:3001/user/login', 
+            Axios.post(process.env.REACT_APP_API_URI +"/user/login", 
             {
                 name:username,
                 password:password

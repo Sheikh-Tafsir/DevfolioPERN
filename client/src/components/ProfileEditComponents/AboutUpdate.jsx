@@ -6,6 +6,7 @@ import '../../styles/FeaturesAdd.css'
 
 const AboutUpdate = () => {
 
+    const [loading, setLoading] = useState(true);
     const [occupation, setOccupation] = useState("");
     const [description, setDescription] = useState("");
     const [backgroundImageLink, setBackgroundImageLink] = useState("");
@@ -17,9 +18,10 @@ const AboutUpdate = () => {
     
     const checkIfAboutExists = async () => {
       try {
-        const response = await Axios.post('http://localhost:8080/about/viewpersonal', {
+        const response = await Axios.post('http://localhost:3001/about/viewpersonal', {
           userId: localStorageUserId,
         });
+        //console.log(response);
     
         if (response.data) {
           if (response.data.occupation) setOccupation(response.data.occupation);
@@ -27,8 +29,12 @@ const AboutUpdate = () => {
           if (response.data.backgroundImageLink) setBackgroundImageLink(response.data.backgroundImageLink);
           if (response.data.aboutImageLink) setAboutImageLink(response.data.aboutImageLink);
         }
-      } catch (error) {
+        setLoading(false);
+
+      } 
+      catch (error) {
         setAboutUpdateStatus("Error occurred while fetching old about data");
+        setLoading(false);
       }
     };
     
@@ -48,7 +54,7 @@ const AboutUpdate = () => {
       }
       else{
         try{
-            const response = await Axios.post('http://localhost:8080/about/create',{
+            const response = await Axios.post(process.env.REACT_APP_API_URI +"/about/create",{
                 userId:localStorageUserId,
                 occupation: occupation,
                 description: description,
@@ -75,6 +81,14 @@ const AboutUpdate = () => {
     useEffect(() => {
       checkIfAboutExists();
     }, []);
+
+    if (loading) {
+      return (
+        <div className="loader-container">
+          <div className="loader" />
+        </div>
+      );
+    }
 
   return (
     <div className="flex flex-col justify-center items-center featuresAdd">

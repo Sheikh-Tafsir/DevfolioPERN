@@ -5,6 +5,7 @@ import Axios from 'axios';
 import '../../styles/FeaturesAdd.css'
 
 const ContactsUpdate = () => {
+  const [loading, setLoading] = useState(true);
   const [phoneNo, setPhoneNo] = useState("");
   const [email, setEmail] = useState("");
   const [facebookLink, setFacebookLink] = useState("");
@@ -18,7 +19,7 @@ const ContactsUpdate = () => {
   
   const checkIfContactsExists = async () => {
     try {
-      const response = await Axios.post('http://localhost:8080/contacts/viewpersonal', {
+      const response = await Axios.post(process.env.REACT_APP_API_URI +"/contacts/viewpersonal", {
         userId: localStorageUserId,
       });
   
@@ -30,8 +31,10 @@ const ContactsUpdate = () => {
         if (response.data.githubLink) setGithubLink(response.data.githubLink);
         if (response.data.linkedinLink) setLinkedinLink(response.data.linkedinLink);
       }
+      setLoading(false);
     } catch (error) {
       setContactsUpdateStatus("Error occurred while fetching old contact data");
+      setLoading(false);
     }
   };
   

@@ -4,12 +4,12 @@ const router = express.Router();
 const jsonParser = bodyParser.json();
 
 // Import the necessary response classes and the UserService
-const UserService = require('../service/UserService');
+const ResponseUtil = require('../../common/domain/ResponseUtil');
 const LoginRequest = require('../domain/LoginRequest');
 const SignupRequest = require('../domain/SignupRequest');
 const PortfolioRequest = require('../domain/PortfolioRequest');
-const ResponseUtil = require('../../common/domain/ResponseUtil');
 
+const UserService = require('../service/UserService');
 const userService = new UserService();
 
 // POST route for '/portfolio'
