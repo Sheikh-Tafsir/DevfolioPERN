@@ -25,7 +25,7 @@ const Profile = () => {
 
   const savePortfolio = async (name) => {
   //alert(name);
-    alert(token):
+    alert(token);
     const path= `${process.env.REACT_APP_API_URI}/user/portfolio`;
     try {
       await Axios.post(path,{
