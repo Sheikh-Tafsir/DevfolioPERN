@@ -20,6 +20,7 @@ const ProjectsProfile = () => {
     };
 
     useEffect(() => {
+        console.log(portfolio.projects);
         if (portfolio.projects && !hasRunEffect) {
           filteritems('Web'); // Filter for "Web" category initially
           setHasRunEffect(true);

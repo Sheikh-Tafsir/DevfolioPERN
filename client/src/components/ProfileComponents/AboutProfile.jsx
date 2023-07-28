@@ -9,7 +9,7 @@ const AboutProfile = () => {
     const [aboutData, setAboutData] = useState([]);
 
     useEffect(() => {
-        console.log(portfolio.about);
+        //console.log(portfolio.about);
         if(portfolio.about){
             setAboutData(portfolio.about);
             //console.log(portfolio.about[0].aboutImageLink);

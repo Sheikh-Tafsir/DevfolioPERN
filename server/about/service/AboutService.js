@@ -73,7 +73,7 @@ async function findByUserId(userId) {
 }
 
 async function save(aboutEntity) {
-    const insertQuery = 'INSERT INTO about (user_id, occupation, description, background_image_link, about_image_link) VALUES ($1, $2, $3, $4, $5)';
+    const insertQuery = 'INSERT INTO about (user_id, occupation, description, background_image_link, about_image_link) VALUES ($1, $2, $3, $4, $5) RETURNING id';
       const insertValues = [
         aboutEntity.userId,
         aboutEntity.occupation,

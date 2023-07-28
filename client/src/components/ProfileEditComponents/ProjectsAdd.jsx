@@ -3,14 +3,12 @@ import { Button } from 'react-bootstrap';
 import {useNavigate} from "react-router-dom";
 import Axios from 'axios';
 import '../../styles/FeaturesAdd.css'
-import Loading from '../Loading';
 
 const ProjectsAdd = () => {
-    const [loading, setLoading] = useState(true);
     const [name, setName] = useState();
     const [description, setDescription] = useState();
     const [technologies, setTechnologies] = useState();
-    const [category, setCategory] = useState();
+    const [category, setCategory] = useState("Web");
     const [liveLink, setLiveLink] = useState();
     const [gitLink, setGitLink] = useState();
     const [imageLink,setImageLink] = useState();
@@ -31,6 +29,7 @@ const ProjectsAdd = () => {
         setProjectAddStatus("Project technologies is empty");
       }
       else if(category === "" || category == null || category === undefined ){
+        alert(category);
         setProjectAddStatus("Project category is empty");
       }
       else if(liveLink === "" || liveLink == null || liveLink === undefined ){
@@ -57,20 +56,17 @@ const ProjectsAdd = () => {
         }
         ).then((response) =>{
             console.log(response.data);
-            setLoading(false);
+            
             if(response.data){
               setProjectAddStatus("Project data saved");
-              
               setTimeout(() => {
                 navigate("/profile");
-            }, 800);
-                
+              }, 800);  
             }
             else{
-              setProjectAddStatus(response.data);
+              setProjectAddStatus("project saving failed");
             }
         }).catch(error => {
-          setLoading(false);
             if (error.response && error.response.status === 400) {
               setProjectAddStatus("user already exists");
             } else {
@@ -79,12 +75,6 @@ const ProjectsAdd = () => {
         });
         document.querySelector(".featureAddForm").reset();
       }
-    }
-
-    if (loading) {
-      return(
-        <Loading/>
-      );
     }
 
   return (

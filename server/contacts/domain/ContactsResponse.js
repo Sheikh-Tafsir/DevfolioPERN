@@ -4,5 +4,5 @@ class ContactsResponse {
     }
   }
   
-  module.exports = ContactsResponse;
+module.exports = ContactsResponse;
   

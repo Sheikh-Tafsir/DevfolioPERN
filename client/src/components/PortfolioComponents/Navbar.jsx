@@ -25,7 +25,7 @@ const Navbar = () => {
 
   return (
     
-    <div className="flex text-sm lg:text-sm 2xl:text-lg lg:pt-1 2xl:pt-0 z-10 headnavbar">
+    <div className="flex text-sm lg:text-sm 2xl:text-lg z-10 headnavbar">
       <div className="w-1/2">
         <Link to="/"><img src={Logo} alt="logo" className="w-50 lg:w-1/3 h-2/3 lg:ml-40 mt-3"></img></Link>
         <RxHamburgerMenu className="sm:invisible hamburger" onClick={navbarChange}/>

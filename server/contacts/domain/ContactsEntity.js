@@ -1,5 +1,4 @@
-function ContactsEntity(id, userId, phoneNo, email, facebookLink, instagramLink, githubLink, linkedinLink) {
-    this.id = id; // You might use a unique ID generator in your application
+function ContactsEntity(userId, phoneNo, email, facebookLink, instagramLink, githubLink, linkedinLink) {
     this.userId = userId;
     this.phoneNo = phoneNo;
     this.email = email;

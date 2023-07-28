@@ -1,5 +1,5 @@
 const ContactsResponse = require('../domain/ContactsResponse');
-const ContactsEntity = require('..//domain/ContactsEntity');
+const ContactsEntity = require('../domain/ContactsEntity');
 const ContactsRepository = require('../repository/ContactsRepository')
 const pool = require('../../db'); // Adjust the path if needed.
 
@@ -81,7 +81,7 @@ async function findByUserId(userId) {
 }
 
 async function save(contactsEntity) {
-    const insertQuery = 'INSERT INTO contacts (user_id, phone_no, email, facebook_link, instagram_link, github_link, linkedin_link) VALUES ($1, $2, $3, $4, $5, $6, $7)';
+    const insertQuery = 'INSERT INTO contacts (user_id, phone_no, email, facebook_link, instagram_link, github_link, linkedin_link) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id';
     const insertValues = [
       contactsEntity.userId,
       contactsEntity.phoneNo,

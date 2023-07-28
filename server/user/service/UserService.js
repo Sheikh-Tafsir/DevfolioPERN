@@ -4,13 +4,12 @@ const SignupResponse = require('../domain/SignupResponse');
 const PortfolioResponse = require('../domain/PortfolioResponse');
 const UserEntity = require("../domain/UserEntity");
 const AboutEntity = require('../../about/domain/AboutEntity');
+const ProjectEntity = require('../../projects/domain/ProjectEntity');
+const ServiceEntity = require('../../services/domain/ServiceEntity');
 const UserRepository = require('../repository/UserRepository');
 const pool = require('../../db'); // Adjust the path if needed.
 
 class UserService {
-  // constructor() {
-  //   // Optionally, you can initialize properties or setup in the constructor if needed
-  // }
   constructor(userRepository) {
     this.userRepository = userRepository;
   }
@@ -23,7 +22,6 @@ class UserService {
         const service = await findAllServicesById(user.id);
         const projects = await findAllProjectsById(user.id);
         const contacts = await findContactsById(user.id);
-        
         const userEntity = new UserEntity(user.name, user.email, about, service, projects, contacts);
         return new PortfolioResponse("user found", userEntity);
       } 
@@ -116,10 +114,9 @@ async function findAboutById(userid) {
     const query = 'SELECT * FROM about WHERE user_id = $1';
     const value = [userid];
     const result = await pool.query(query, value);
-    //return result.rows;
+
     const aboutEntities = result.rows.map(row => {
       return new AboutEntity(
-        row.id,
         row.user_id,
         row.occupation,
         row.description,
@@ -128,6 +125,33 @@ async function findAboutById(userid) {
       );
     });
     return aboutEntities;
+  } 
+  catch (error) {
+    throw error;
+  }
+}
+
+async function findAllProjectsById(userId) {
+  
+  try {
+    const query = 'SELECT * FROM projects WHERE user_id = $1';
+    const value = [userId];
+    const result = await pool.query(query, value);
+
+    const projectEntities = result.rows.map(row => {
+      return new ProjectEntity(
+        row.user_id,
+        row.name,
+        row.description,
+        row.technologies,
+        row.category,
+        row.live_link,
+        row.git_link,
+        row.image_link
+      );
+      
+    });
+    return projectEntities;
   } 
   catch (error) {
     throw error;
@@ -146,17 +170,7 @@ async function findAllServicesById(userid) {
   }
 }
 
-async function findAllProjectsById(userid) {
-  try {
-    const query = 'SELECT * FROM projects WHERE user_id = $1';
-    const values = [userid];
-    const result = await pool.query(query, values);
-    return result.rows;
-  } 
-  catch (error) {
-    throw error;
-  }
-}
+
 
 async function findContactsById(userid) {
   try {

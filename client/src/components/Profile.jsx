@@ -27,6 +27,7 @@ const Profile = () => {
   //alert(name);
     // alert(token);
     const apipath= `${process.env.REACT_APP_API_URI}/user/portfolio`;
+    //const apipath= `http://localhost:3001/user/portfolio`;
     try {
       await Axios.post(apipath,{
         name:name,
