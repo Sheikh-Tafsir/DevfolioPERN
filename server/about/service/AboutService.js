@@ -46,7 +46,7 @@ class AboutService {
     async viewAll() {
         return findAll();
     }
-  }
+}
   
 async function findByUserId(userId) {
     const query = 'SELECT * FROM about WHERE user_id = $1';

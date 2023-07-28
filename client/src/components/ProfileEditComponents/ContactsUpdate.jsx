@@ -24,6 +24,7 @@ const ContactsUpdate = () => {
       const response = await Axios.post(apipath, {
         userId: localStorageUserId,
       });
+      console.log(response);
   
       if (response.data) {
         if (response.data.phoneNo) setPhoneNo(response.data.phoneNo);
