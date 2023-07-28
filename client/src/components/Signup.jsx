@@ -34,7 +34,8 @@ const Signup = () => {
         }
 
         else{
-            Axios.post(process.env.SERVER_API_URL + "/user/signup",
+            const apipath = `${process.env.REACT_APP_API_URI}/user/signup`;
+            Axios.post(apipath,
             {
                 name:username,
                 email:useremail,

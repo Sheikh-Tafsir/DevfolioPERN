@@ -3,6 +3,7 @@ import { Button } from 'react-bootstrap';
 import {useNavigate} from "react-router-dom";
 import Axios from 'axios';
 import '../../styles/FeaturesAdd.css'
+import Loading from '../Loading';
 
 const ContactsUpdate = () => {
   const [loading, setLoading] = useState(true);
@@ -19,7 +20,8 @@ const ContactsUpdate = () => {
   
   const checkIfContactsExists = async () => {
     try {
-      const response = await Axios.post(process.env.REACT_APP_API_URI +"/contacts/viewpersonal", {
+      const apipath = `${process.env.REACT_APP_API_URI}/contacts/viewpersonal`;
+      const response = await Axios.post(apipath, {
         userId: localStorageUserId,
       });
   
@@ -47,7 +49,8 @@ const ContactsUpdate = () => {
       setContactsUpdateStatus("Email is empty");
     }
     else{
-      await Axios.post('http://localhost:8080/contacts/create',{
+      const apipath = `${process.env.REACT_APP_API_URI}/contacts/create`;
+      await Axios.post(apipath,{
         userId:localStorageUserId,
         phoneNo:phoneNo,
         email: email,
@@ -71,10 +74,15 @@ const ContactsUpdate = () => {
   }
 
   
-  
   useEffect(() => {
     checkIfContactsExists();
   }, []);
+
+  if (loading) {
+    return(
+      <Loading/>
+    );
+  }
 
   return (
     <div className="flex flex-col justify-center items-center featuresAdd">

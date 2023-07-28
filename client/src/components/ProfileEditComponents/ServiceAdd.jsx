@@ -3,6 +3,7 @@ import { Button } from 'react-bootstrap';
 import {useNavigate} from "react-router-dom";
 import Axios from 'axios';
 import '../../styles/FeaturesAdd.css'
+import Loading from '../Loading';
 
 const ServiceAdd = () => {
     const [loading, setLoading] = useState(true);
@@ -21,7 +22,8 @@ const ServiceAdd = () => {
         setServiceAddStatus("Service description is empty");
       }
       else{
-        Axios.post(process.env.REACT_APP_API_URI + "/service/create",
+        const apipath = `${process.env.REACT_APP_API_URI}/service/create`;
+        Axios.post(apipath,
         {
           userId:localStorageUserId,
           name:name,
@@ -50,6 +52,13 @@ const ServiceAdd = () => {
         });
       }
     }
+
+    if (loading) {
+      return(
+        <Loading/>
+      );
+    }
+
   return (
     <div className="flex flex-col justify-center items-center featuresAdd">
         <form className="w-6/7 lg:w-2/6 text-white flex flex-col featuresAddForm">

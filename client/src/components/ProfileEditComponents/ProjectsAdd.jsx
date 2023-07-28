@@ -3,6 +3,7 @@ import { Button } from 'react-bootstrap';
 import {useNavigate} from "react-router-dom";
 import Axios from 'axios';
 import '../../styles/FeaturesAdd.css'
+import Loading from '../Loading';
 
 const ProjectsAdd = () => {
     const [loading, setLoading] = useState(true);
@@ -42,7 +43,8 @@ const ProjectsAdd = () => {
         setProjectAddStatus("Image link is empty");
       }
       else{
-        Axios.post(process.env.REACT_APP_API_URI +"/project/create",
+        const apipath = `${process.env.REACT_APP_API_URI}/project/create`;
+        Axios.post(apipath,
         {
             userId:localStorageUserId,
             name:name,
@@ -78,6 +80,13 @@ const ProjectsAdd = () => {
         document.querySelector(".featureAddForm").reset();
       }
     }
+
+    if (loading) {
+      return(
+        <Loading/>
+      );
+    }
+
   return (
     <div className="flex flex-col justify-center items-center featuresAdd">
         <form className="w-6/7 lg:w-2/5 text-white flex flex-col featuresAddForm">

@@ -3,6 +3,7 @@ import { Button } from 'react-bootstrap';
 import {useNavigate} from "react-router-dom";
 import Axios from 'axios';
 import '../../styles/FeaturesAdd.css'
+import Loading from '../Loading';
 
 const AboutUpdate = () => {
 
@@ -18,7 +19,8 @@ const AboutUpdate = () => {
     
     const checkIfAboutExists = async () => {
       try {
-        const response = await Axios.post('http://localhost:3001/about/viewpersonal', {
+        const apipath = `${process.env.REACT_APP_API_URI}/about/viewpersonal`;
+        const response = await Axios.post(apipath, {
           userId: localStorageUserId,
         });
         //console.log(response);
@@ -54,7 +56,8 @@ const AboutUpdate = () => {
       }
       else{
         try{
-            const response = await Axios.post(process.env.REACT_APP_API_URI +"/about/create",{
+          const apipath = `${process.env.REACT_APP_API_URI}/about/create`;
+            const response = await Axios.post(apipath,{
                 userId:localStorageUserId,
                 occupation: occupation,
                 description: description,
@@ -83,10 +86,8 @@ const AboutUpdate = () => {
     }, []);
 
     if (loading) {
-      return (
-        <div className="loader-container">
-          <div className="loader" />
-        </div>
+      return(
+        <Loading/>
       );
     }
 

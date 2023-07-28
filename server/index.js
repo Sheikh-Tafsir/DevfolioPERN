@@ -47,6 +47,7 @@ app.get('/', (req, res) => {
 
 app.use("/user", require("./user/controller/UserController.js"));
 app.use("/about", require("./about/controller/AboutController"));
+app.use("/contacts", require("./contacts/controller/ContactsController"))
 
 // Start the server on a specific port (e.g., 3000).
 const PORT = process.env.PORT || 3001;

@@ -7,10 +7,10 @@ import ServiceProfile from './ProfileComponents/ServiceProfile'
 import ProjectsProfile from './ProfileComponents/ProjectsProfile'
 import ContactsProfile from './ProfileComponents/ContactsProfile'
 import Footer from './Footer'
+import Loading from './Loading';
 //import NameContext from '../contexts/NameContext';
 import  PortfolioContext from '../contexts/PortfolioContext';
 
-import "../styles/Profile.css"
 
 const Profile = () => {
   //const {name,setName} = useContext(NameContext);
@@ -26,9 +26,9 @@ const Profile = () => {
   const savePortfolio = async (name) => {
   //alert(name);
     // alert(token);
-    const path= `${process.env.REACT_APP_API_URI}/user/portfolio`;
+    const apipath= `${process.env.REACT_APP_API_URI}/user/portfolio`;
     try {
-      await Axios.post(path,{
+      await Axios.post(apipath,{
         name:name,
       }).then((response) =>{
         //console.log(response);
@@ -48,13 +48,12 @@ const Profile = () => {
     savePortfolio(name);
   }, [name]);
 
-  /*if (loading) {
-    return (
-      <div className="loader-container">
-        <div className="loader" />
-      </div>
+  if (loading) {
+    return(
+      <Loading/>
     );
-  }*/
+  }
+  
   return (
     <Suspense fallback={<p>Loading...</p>}>
       <HeromainProfile/>

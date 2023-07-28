@@ -65,7 +65,8 @@ const DynamicPage = () => {
   const savePortfolio = async (name) => {
     
     try {
-      await Axios.post(process.env.SERVER_API_URL + "/user/portfolio",{
+      const apipath = `${process.env.REACT_APP_API_URI}/user/portfolio`;
+      await Axios.post(apipath,{
         name:name,
       }).then((response) =>{
         //console.log(response.data.data.userEntity);
