@@ -16,6 +16,7 @@ const Profile = () => {
   //const {name,setName} = useContext(NameContext);
   const [loading, setLoading] = useState(true);
   let name=localStorage.getItem("localStorageUsername");
+  let token = localStorage.getItem('token');
   const {setPortfolio} = useContext(PortfolioContext);
 
   // const handleSetName = (name) => {
@@ -24,10 +25,8 @@ const Profile = () => {
 
   const savePortfolio = async (name) => {
   //alert(name);
+    alert(token):
     const path= `${process.env.REACT_APP_API_URI}/user/portfolio`;
-    //let token = localStorage.getItem('token');
-    alert(path);
-    //alert(token):
     try {
       await Axios.post(path,{
         name:name,
