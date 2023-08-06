@@ -12,36 +12,65 @@ const ProjectsAdd = () => {
     const [liveLink, setLiveLink] = useState();
     const [gitLink, setGitLink] = useState();
     const [imageLink,setImageLink] = useState();
+    const [imageFile,setImageFile] = useState();
     const [projectAddStatus, setProjectAddStatus] = useState("");
     let localStorageUserId = localStorage.getItem("localStorageUserId");
 
     const navigate = useNavigate();
 
-        //handle background image upload
-        const handleProjectImageUpload = async (event) => {
-          const file = event.target.files[0];
-          if (file) {
-            try {
-              const dataURL = await imageToDataURL(file);
-              setImageLink(dataURL);
-            } catch (error) {
-              console.error('Error converting image to data URL:', error);
-            }
-          }
-        };
-    
-        const imageToDataURL = (file) => {
-          return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-              resolve(reader.result);
-            };
-            reader.onerror = reject;
-            reader.readAsDataURL(file);
-          });
-        };
+    //handle background image upload
+    const handleProjectImageUpload = async (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        try {
+          //const dataURL = await uploadToImgbb(file);
+          //setImageLink(dataURL);
+          const dataURL = await imageToDataURL(file);
+          setImageLink(dataURL);
+          setImageFile(file);
+        } catch (error) {
+          console.error('Error converting image to data URL:', error);
+        }
+      }
+    };
 
-    const addProject = () => {
+    const imageToDataURL = (file) => {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          resolve(reader.result);
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    };
+
+
+    const uploadToImgbb = async (file) => {
+      //alert("2");
+      try {
+        //const apiKey = process.env.IMGBB_API;
+        const apiKey = "daa74a0217bdb13cb3b227d5e1732bc8";
+        const formData = new FormData();
+        formData.append('image', file);
+
+        const response = await Axios.post(`https://api.imgbb.com/1/upload?key=${apiKey}`, formData);
+    
+        if (response.data && response.data.data && response.data.data.url) {
+          // alert(response.data.data.url);
+          return response.data.data.url;
+        } 
+        else {
+          console.log("Error shortening URL");
+        }
+      } 
+      catch (error) {
+        console.error('Error uploading image:', error);
+      }
+    };
+        
+
+    const addProject = async () => {
       //console.log(category);
       if(name === "" || name == null || name === undefined ){
         setProjectAddStatus("Project name is empty");
@@ -66,8 +95,13 @@ const ProjectsAdd = () => {
         setProjectAddStatus("Image link is empty");
       }
       else{
-        const apipath = `${process.env.REACT_APP_API_URI}/project/create`;
-        Axios.post(apipath,
+        //const apipath = `${process.env.REACT_APP_API_URI}/project/create`;
+        const dataURL = await uploadToImgbb(imageFile);
+        setImageLink(dataURL);
+        alert(dataURL);
+        
+        const apipath = `http://localhost:3001/project/create`;
+        await Axios.post(apipath,
         {
             userId:localStorageUserId,
             name:name,
@@ -76,7 +110,7 @@ const ProjectsAdd = () => {
             category:category,
             liveLink:liveLink,
             gitLink:gitLink,
-            imageLink:imageLink,
+            imageLink:dataURL,
         }
         ).then((response) =>{
             console.log(response.data);
@@ -118,7 +152,7 @@ const ProjectsAdd = () => {
             {/* <input type="text" className="lg:text-xs 2xl:text-base" placeholder="Insert Project Image Link" onChange={(event) => {setImageLink(event.target.value);} }/> */}
             <p>Project Image</p>
             <input type="file" accept="image/*" className="pt-2 image-input" onChange={handleProjectImageUpload}/>
-            {imageLink && <img src={imageLink} alt="Uploaded Image" className="h-10 w-10 mx-auto"/>}
+            {imageLink && <img src={imageLink} alt="Uploaded" className="h-10 w-10 mx-auto"/>}
             <input type="text" className="lg:text-xs 2xl:text-base" placeholder="Insert Project Technologies" onChange={(event) => {setTechnologies(event.target.value);} }/>
             <input type="text" className="lg:text-xs 2xl:text-base" placeholder="Insert Project Live Link" onChange={(event) => {setLiveLink(event.target.value);} }/>
             <input type="text" className="lg:text-xs 2xl:text-base" placeholder="Insert Project Github Link" onChange={(event) => {setGitLink(event.target.value);} }/>

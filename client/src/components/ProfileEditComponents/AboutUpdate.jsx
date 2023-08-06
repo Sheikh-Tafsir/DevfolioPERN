@@ -13,7 +13,6 @@ const AboutUpdate = () => {
     const [backgroundImageLink, setBackgroundImageLink] = useState("");
     const [aboutImageLink, setAboutImageLink] = useState("");
     const [aboutUpdateStatus, setAboutUpdateStatus] = useState("");
-    const [bitstream, setBitstream] = useState('');
     let localStorageUserId = localStorage.getItem("localStorageUserId");
   
     const navigate = useNavigate();
@@ -26,7 +25,7 @@ const AboutUpdate = () => {
         const response = await Axios.post(apipath, {
           userId: localStorageUserId,
         });
-        console.log(response.data);
+        //console.log(response.data);
     
         if (response.data) {
           if (response.data.occupation) setOccupation(response.data.occupation);
@@ -98,7 +97,8 @@ const AboutUpdate = () => {
       }
       else{
         try{
-          const apipath = `${process.env.REACT_APP_API_URI}/about/create`;
+            //const apipath = `${process.env.REACT_APP_API_URI}/about/create`;
+            const apipath = `http://localhost:3001/about/create`;
             const response = await Axios.post(apipath,{
                 userId:localStorageUserId,
                 occupation: occupation,
@@ -144,11 +144,11 @@ const AboutUpdate = () => {
             <p>Background Image:</p>
             {/* <input type="text" className="lg:text-xs 2xl:text-base" placeholder="Insert your background image link" value={backgroundImageLink} onChange={(event) => {setBackgroundImageLink(event.target.value);} }/> */}
             <input type="file" accept="image/*" className="pt-2 image-input" onChange={handleBackgroundImageUpload}/>
-            {backgroundImageLink && <img src={backgroundImageLink} alt="Uploaded Image" className="h-10 w-10 mx-auto"/>}
+            {backgroundImageLink && <img src={backgroundImageLink} alt="Uploaded" className="h-10 w-10 mx-auto"/>}
             <p>About Image:</p>
             {/*<input type="text" className="lg:text-xs 2xl:text-base" placeholder="Insert your about image link" value={aboutImageLink} onChange={(event) => {setAboutImageLink(event.target.value);} }/> */}
             <input type="file" accept="image/*" className="pt-2 image-input" onChange={handleAboutImageUpload}/>
-            {aboutImageLink && <img src={aboutImageLink} alt="Uploaded Image" className="h-10 w-10 mx-auto"/>}
+            {aboutImageLink && <img src={aboutImageLink} alt="Uploaded" className="h-10 w-10 mx-auto"/>}
             <p className="mx-auto mb-4 text-red-600">{aboutUpdateStatus}</p>
             <Button className="mx-auto mb-10 text-white w-3/4 h-10 feature-save-button" onClick={updateAbout}>Save</Button>
         </form>
