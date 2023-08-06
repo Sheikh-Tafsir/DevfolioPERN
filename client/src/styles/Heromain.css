@@ -32,3 +32,8 @@
         text-align: center;
     }
 }
+
+.hero-writings-slide-left{
+    transform: translateX(50vw);
+    
+}

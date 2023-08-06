@@ -88,7 +88,7 @@ const ContactsUpdate = () => {
   return (
     <div className="flex flex-col justify-center items-center featuresAdd">
         <form className="w-6/7 lg:w-2/5 2xl:w-2/6 text-white flex flex-col featuresAddForm">
-            <h1 className="lg:text-2xl 2xl:text-4xl mx-auto pt-8 pb-6">Update Contacts</h1>
+            <h1 className="text-2xl lg:text-2xl 2xl:text-4xl mx-auto pt-8 pb-6">Update Contacts</h1>
             <input type="text" className="lg:text-xs 2xl:text-base" placeholder="Insert your phone no" value={phoneNo} onChange={(event) => {setPhoneNo(event.target.value);} }/>
             <input type="text" className="lg:text-xs 2xl:text-base" placeholder="Insert your email" value={email} onChange={(event) => {setEmail(event.target.value);} }/>
             <input type="text" className="lg:text-xs 2xl:text-base" placeholder="Insert your facebook link" value={facebookLink} onChange={(event) => {setFacebookLink(event.target.value);} }/>

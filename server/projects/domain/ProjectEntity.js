@@ -2,7 +2,6 @@ class ProjectEntity {
     constructor(userId, name, description, technologies, category, liveLink, gitLink, imageLink) {
         this.userId = userId;
         this.name = name,
-        this.occupation = occupation;
         this.description = description;
         this.technologies = technologies,
         this.category = category,

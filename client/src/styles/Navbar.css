@@ -24,7 +24,7 @@
     .navbar{
         background-color:rgb(43,42,43);
         width:100vw;
-        height:25vh;
+        height:30vh;
         transform: translate(-50vw,-30vh);
         transition: linear 0.3s;
     }
@@ -42,6 +42,16 @@
         font-size:2rem;
         transform: translate(85vw,-5vh);
     }
+    .navbar-extra{
+        height:60vh;
+        width:100vw;
+        background-color: rgba(0,0,0,0.7);
+        transform: translate(-50vw,-90vh);
+        transition: linear 0.3s;
+    }
+    .navbar-extra-down{
+        transform: translate(-50vw,10vh);
+    }
 }
 .navbar a{
     transition: 0.1s;
@@ -49,9 +59,21 @@
 .navbar a:hover{
     color:rgb(234,88,12);
 }
-.logout-button{
-    transition: 0.1s;
+@media (min-width: 768px) {
+    .logout-button{
+        transition: 0.1s;
+    }
 }
+@media (max-width: 767px) {
+    .logout-button{
+        transition: 0.1s;
+        width:80%;
+        margin:auto;
+        
+        
+    }
+}
+
 .logout-button:hover{
     background-color: rgba(240,240,240);
     color:rgb(234,88,12);

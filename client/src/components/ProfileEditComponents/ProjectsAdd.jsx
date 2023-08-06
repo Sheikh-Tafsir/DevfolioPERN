@@ -80,7 +80,7 @@ const ProjectsAdd = () => {
   return (
     <div className="flex flex-col justify-center items-center featuresAdd">
         <form className="w-6/7 lg:w-2/5 text-white flex flex-col featuresAddForm">
-            <h1 className="lg:text-2xl 2xl:text-4xl mx-auto pt-8 pb-6">Add Project</h1>
+            <h1 className="text-2xl lg:text-2xl 2xl:text-4xl mx-auto pt-8 pb-6">Add Project</h1>
             <input type="text" className="lg:text-xs 2xl:text-base" placeholder="Insert Project Name" onChange={(event) => {setName(event.target.value);} }/>
             <div className="lg:flex select-categoty">
               <label className="w-1/2 lg:w-2/3 mt-3">Choose Project Type</label>

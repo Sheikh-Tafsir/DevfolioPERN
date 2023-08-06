@@ -6,6 +6,7 @@ import PortfolioContext from '../../contexts/PortfolioContext';
 
 const Heromain = () => {
 
+  const[heroSlideClicked, setHeroSlideClicked] = useState(true);
   const {portfolio} = useContext(PortfolioContext);
   const [backgroundImageLink,setBaackgroundImageLink]=useState("");
 
@@ -19,11 +20,15 @@ const Heromain = () => {
     }
   }, [portfolio]);
 
-  const logout = () => {
-    localStorage.setItem("localStorageUsername",null);
-    localStorage.setItem("token",null);
-    localStorage.setItem("localStorageUserId",null);
-    navigate("/");
+  const slideHero = () => {
+    setHeroSlideClicked(!heroSlideClicked);
+    
+    if(heroSlideClicked){
+      document.querySelector(".hero-writings").classList.add("hero-writings-slide-left");
+    }
+    else{
+      document.querySelector(".hero-writings").classList.remove("hero-writings-slide-left");
+    }
   }
 
 
@@ -35,7 +40,7 @@ const Heromain = () => {
             <h1 className="text-5xl lg:text-6xl 2xl:text-7xl font-bold  mb-2">{portfolio.name}</h1>
             <div className="flex text-2xl lg:text-3xl 2xl:text-4xl font-bold  mb-3"><p className="mr-2">Software</p><p className="text-orange-600">Engineer.</p></div>
             <p className="text-lg lg:text-sm 2xl:text-lg mb-6">Web developer with 1+ years experiencethat keep customers coming back for about sevices makes effort.</p>
-            <button className="bg-orange-600 w-40 h-8 lg:w-24 lg:h-8 xl:w-32 xl:h-11 lg:text-sm 2xl:text-lg font-semibold pb-0.5 rounded-sm" onClick={logout}>Say Hello</button>
+            <button className="bg-orange-600 w-40 h-8 lg:w-24 lg:h-8 xl:w-32 xl:h-11 lg:text-sm 2xl:text-lg font-semibold pb-0.5 rounded-sm" onClick={slideHero}>Say Hello</button>
         </div>
     </div>
   )

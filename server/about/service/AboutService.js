@@ -56,7 +56,7 @@ async function findByUserId(userId) {
         if (result.rows.length > 0) {
             const aboutEntities = result.rows[0];
             return new AboutEntity(
-                aboutEntities.id, 
+                // aboutEntities.id, 
                 aboutEntities.user_id, 
                 aboutEntities.occupation, 
                 aboutEntities.description, 
@@ -116,7 +116,7 @@ async function findAll() {
         const result = await pool.query(query);
         const aboutEntities = result.rows.map(row => {
             return new AboutEntity(
-                row.id, 
+                // row.id, 
                 row.user_id, 
                 row.occupation, 
                 row.description, 

@@ -16,6 +16,13 @@
         /*box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.3);*/
         /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); */
     }
+    .featuresAdd p{
+        width: 75%;
+        margin:auto;
+        margin-bottom:0.8vh;
+        font-weight: bold;
+        font-size:1.1rem;
+    }
     .featuresAdd input,.featuresAdd textarea, .select-categoty{
         width: 75%;
         margin: auto;
@@ -37,6 +44,13 @@
         width:90%;
         /*box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.3);*/
         /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); */
+    }
+    .featuresAdd p{
+        width: 85%;
+        margin: auto;
+        margin-bottom: 1vh;
+        font-weight: bold;
+        font-size:1.1rem;
     }
     .featuresAdd input,.featuresAdd textarea, .select-categoty{
         width: 85%;
