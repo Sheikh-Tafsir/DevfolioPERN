@@ -62,7 +62,7 @@ async function findByUserId(userId) {
         if (result.rows.length > 0) {
             const contactsEntityData = result.rows[0];
             return new ContactsEntity(
-                contactsEntityData.id,
+                // contactsEntityData.id,
                 contactsEntityData.user_id,
                 contactsEntityData.phone_no,
                 contactsEntityData.email,

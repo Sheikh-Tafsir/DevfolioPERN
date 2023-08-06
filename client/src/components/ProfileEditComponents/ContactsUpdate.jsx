@@ -21,10 +21,11 @@ const ContactsUpdate = () => {
   const checkIfContactsExists = async () => {
     try {
       const apipath = `${process.env.REACT_APP_API_URI}/contacts/viewpersonal`;
+     // const apipath = `http://localhost:3001/contacts/viewpersonal`;
       const response = await Axios.post(apipath, {
         userId: localStorageUserId,
       });
-      console.log(response);
+      console.log(response.data);
   
       if (response.data) {
         if (response.data.phoneNo) setPhoneNo(response.data.phoneNo);
@@ -89,11 +90,17 @@ const ContactsUpdate = () => {
     <div className="flex flex-col justify-center items-center featuresAdd">
         <form className="w-6/7 lg:w-2/5 2xl:w-2/6 text-white flex flex-col featuresAddForm">
             <h1 className="text-2xl lg:text-2xl 2xl:text-4xl mx-auto pt-8 pb-6">Update Contacts</h1>
+            <p>Phone No</p>
             <input type="text" className="lg:text-xs 2xl:text-base" placeholder="Insert your phone no" value={phoneNo} onChange={(event) => {setPhoneNo(event.target.value);} }/>
+            <p>Email</p>
             <input type="text" className="lg:text-xs 2xl:text-base" placeholder="Insert your email" value={email} onChange={(event) => {setEmail(event.target.value);} }/>
+            <p>Facebook Link</p>
             <input type="text" className="lg:text-xs 2xl:text-base" placeholder="Insert your facebook link" value={facebookLink} onChange={(event) => {setFacebookLink(event.target.value);} }/>
+            <p>Instagram Link</p>
             <input type="text" className="lg:text-xs 2xl:text-base" placeholder="Insert your instagram link" value={instagramLink} onChange={(event) => {setInstagramLink(event.target.value);} }/>
+            <p>Github Link</p>
             <input type="text" className="lg:text-xs 2xl:text-base" placeholder="Insert your github link" value={githubLink} onChange={(event) => {setGithubLink(event.target.value);} }/>
+            <p>Linkedin Link</p>
             <input type="text" className="lg:text-xs 2xl:text-base" placeholder="Insert your linkedin link" value={linkedinLink} onChange={(event) => {setLinkedinLink(event.target.value);} }/>
             <p className="mx-auto mb-4 text-red-600">{contactsUpdateStatus}</p>
             <Button className="mx-auto mb-10 text-white w-3/4 h-10 feature-save-button" onClick={updateContacts}>Save</Button>

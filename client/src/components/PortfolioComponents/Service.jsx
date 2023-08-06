@@ -28,7 +28,7 @@ const Service = () => {
                     </div>
                 )
             })}
-            <div className="services" data-aos="fade-right" data-aos-delay="500">
+            {/* <div className="services" data-aos="fade-right" data-aos-delay="500">
                 <BsPerson className="services-icons"/>
                 <p className="font-bold lg:text-base 2xl:text-lg mb-3">Web Design</p>
                 <p className="lg:text-sm 2xl:text-base mb-3">One way to categorize the activities in terms of the professional's area of expertise usch as competitive analysis corporate strategy </p>
@@ -45,7 +45,7 @@ const Service = () => {
                 <p className="font-bold lg:text-base 2xl:text-lg mb-3">Creative Design</p>
                 <p className="lg:text-sm 2xl:text-base mb-3">One way to categorize the activities in terms of the professional's area of expertise usch as competitive analysis corporate strategy </p>
                 <button className="bg-orange-600 w-20 h-7 pb-0.5 mt-1">Read Now</button>
-            </div>
+            </div> */}
         </div>
     </div>
   )

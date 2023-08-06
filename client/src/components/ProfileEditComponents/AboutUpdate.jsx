@@ -44,13 +44,26 @@ const AboutUpdate = () => {
     };
 
     
-    //handle image upload
-    const handleImageUpload = async (event) => {
+    //handle about image upload
+    const handleAboutImageUpload = async (event) => {
       const file = event.target.files[0];
       if (file) {
         try {
           const dataURL = await imageToDataURL(file);
-          setBitstream(dataURL);
+          setAboutImageLink(dataURL);
+        } catch (error) {
+          console.error('Error converting image to data URL:', error);
+        }
+      }
+    };
+
+    //handle background image upload
+    const handleBackgroundImageUpload = async (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        try {
+          const dataURL = await imageToDataURL(file);
+          setBackgroundImageLink(dataURL);
         } catch (error) {
           console.error('Error converting image to data URL:', error);
         }
@@ -125,15 +138,17 @@ const AboutUpdate = () => {
         <form className="w-6/7 lg:w-2/5 2xl:w-2/6 text-white flex flex-col featuresAddForm">
             <h1 className="text-2xl lg:text-2xl 2xl:text-4xl mx-auto pt-8 pb-6">Update About</h1>
             <p>Designation:</p>
-            <input type="text" className="lg:text-xs 2xl:text-base" placeholder="Insert your occupaation" value={occupation} onChange={(event) => {setOccupation(event.target.value);} }/>
+            <input type="text" className="lg:text-xs 2xl:text-base" placeholder="eg:Teacher" value={occupation} onChange={(event) => {setOccupation(event.target.value);} }/>
             <p>About:</p>
             <textarea type="text" className="lg:text-xs 2xl:text-base lg:h-40 2xl:h-52 pt-2" placeholder="Insert your description" value={description} onChange={(event) => {setDescription(event.target.value);} }/>
             <p>Background Image:</p>
-            <input type="text" className="lg:text-xs 2xl:text-base" placeholder="Insert your background image link" value={backgroundImageLink} onChange={(event) => {setBackgroundImageLink(event.target.value);} }/>
+            {/* <input type="text" className="lg:text-xs 2xl:text-base" placeholder="Insert your background image link" value={backgroundImageLink} onChange={(event) => {setBackgroundImageLink(event.target.value);} }/> */}
+            <input type="file" accept="image/*" className="pt-2 image-input" onChange={handleBackgroundImageUpload}/>
+            {backgroundImageLink && <img src={backgroundImageLink} alt="Uploaded Image" className="h-10 w-10 mx-auto"/>}
             <p>About Image:</p>
-            <input type="text" className="lg:text-xs 2xl:text-base" placeholder="Insert your about image link" value={aboutImageLink} onChange={(event) => {setAboutImageLink(event.target.value);} }/>
-            {/* <input type="file" accept="image/*" className="pt-2" onChange={handleImageUpload}/>
-            {aboutImageLink && <img src={aboutImageLink} alt="Uploaded Image" className="h-10 w-10 mx-auto"/>} */}
+            {/*<input type="text" className="lg:text-xs 2xl:text-base" placeholder="Insert your about image link" value={aboutImageLink} onChange={(event) => {setAboutImageLink(event.target.value);} }/> */}
+            <input type="file" accept="image/*" className="pt-2 image-input" onChange={handleAboutImageUpload}/>
+            {aboutImageLink && <img src={aboutImageLink} alt="Uploaded Image" className="h-10 w-10 mx-auto"/>}
             <p className="mx-auto mb-4 text-red-600">{aboutUpdateStatus}</p>
             <Button className="mx-auto mb-10 text-white w-3/4 h-10 feature-save-button" onClick={updateAbout}>Save</Button>
         </form>

@@ -84,7 +84,6 @@ const Login = () => {
                 <FaRegAddressBook className ="loginCredsIcons"/>
                 <input type="text" id="name" name="name" placeholder="Insert Usernanme" value={username} onChange={(event) => {setUsername(event.target.value);}}/><br/>
             </div>
-            
             <div className="loginCreds">
                 <FaRegAddressBook className ="loginCredsIcons"/>
                 <input type="password" id="pass" name="pass" placeholder="Insert Password" value={password} onChange={(event) => {setPassword(event.target.value);}}/><br/>
