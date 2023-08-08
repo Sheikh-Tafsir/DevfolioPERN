@@ -45,12 +45,11 @@ const ProjectsAdd = () => {
       });
     };
 
-
+    //upload image to imgbb and get link
     const uploadToImgbb = async (file) => {
       //alert("2");
       try {
-        //const apiKey = process.env.IMGBB_API;
-        const apiKey = "daa74a0217bdb13cb3b227d5e1732bc8";
+        const apiKey = process.env.IMGBB_API;
         const formData = new FormData();
         formData.append('image', file);
 
@@ -95,12 +94,13 @@ const ProjectsAdd = () => {
         setProjectAddStatus("Image link is empty");
       }
       else{
-        //const apipath = `${process.env.REACT_APP_API_URI}/project/create`;
+        
         const dataURL = await uploadToImgbb(imageFile);
         setImageLink(dataURL);
         alert(dataURL);
         
-        const apipath = `http://localhost:3001/project/create`;
+        const apipath = `${process.env.REACT_APP_API_URI}/project/create`;
+        //const apipath = `http://localhost:3001/project/create`;
         await Axios.post(apipath,
         {
             userId:localStorageUserId,

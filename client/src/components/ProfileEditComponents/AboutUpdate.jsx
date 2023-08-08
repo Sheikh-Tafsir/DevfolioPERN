@@ -15,6 +15,9 @@ const AboutUpdate = () => {
     const [aboutUpdateStatus, setAboutUpdateStatus] = useState("");
     let localStorageUserId = localStorage.getItem("localStorageUserId");
   
+    const [backgroundImage, setBackgroundImage] = useState();
+    const [aboutImage, setAboutImage] = useState();
+
     const navigate = useNavigate();
     
     //check if user set about part
@@ -50,6 +53,7 @@ const AboutUpdate = () => {
         try {
           const dataURL = await imageToDataURL(file);
           setAboutImageLink(dataURL);
+          setAboutImage(file);
         } catch (error) {
           console.error('Error converting image to data URL:', error);
         }
@@ -63,6 +67,7 @@ const AboutUpdate = () => {
         try {
           const dataURL = await imageToDataURL(file);
           setBackgroundImageLink(dataURL);
+          setBackgroundImage(file);
         } catch (error) {
           console.error('Error converting image to data URL:', error);
         }
@@ -79,10 +84,35 @@ const AboutUpdate = () => {
         reader.readAsDataURL(file);
       });
     };
+
+    //upload image to imgbb and get link
+    const uploadToImgbb = async (file) => {
+      //alert("2");
+      try {
+        
+        const apiKey = process.env.IMGBB_API;
+        const formData = new FormData();
+        formData.append('image', file);
+
+        const response = await Axios.post(`https://api.imgbb.com/1/upload?key=${apiKey}`, formData);
+    
+        if (response.data && response.data.data && response.data.data.url) {
+          // alert(response.data.data.url);
+          return response.data.data.url;
+        } 
+        else {
+          console.log("Error shortening URL");
+        }
+      } 
+      catch (error) {
+        console.error('Error uploading image:', error);
+      }
+    };
     
   
     //update about
     const updateAbout = async () => {
+      // console.log(aboutImage);
       if(occupation === "" || occupation == null || occupation === undefined ){
         setAboutUpdateStatus("Your occupation empty");
       }
@@ -96,15 +126,35 @@ const AboutUpdate = () => {
         setAboutUpdateStatus("Your about image link is empty");
       }
       else{
+        var aboutImageURL = null;
+        var backgroundImageURL = null;
+
+        if(aboutImage === undefined || aboutImage == null){
+          aboutImageURL = aboutImageLink; //if about image not selected use previous
+        }
+        else{
+          aboutImageURL = await uploadToImgbb(aboutImage);
+          setAboutImageLink(aboutImageURL);
+        }
+
+        if(backgroundImage === undefined || backgroundImage == null){
+          backgroundImageURL = backgroundImageLink //if background image not selected use previous
+        }
+        else{
+          backgroundImageURL = await uploadToImgbb(backgroundImage);
+          setBackgroundImageLink(backgroundImageURL);
+        }
+        
+
         try{
-            //const apipath = `${process.env.REACT_APP_API_URI}/about/create`;
-            const apipath = `http://localhost:3001/about/create`;
+            const apipath = `${process.env.REACT_APP_API_URI}/about/create`;
+            //const apipath = `http://localhost:3001/about/create`;
             const response = await Axios.post(apipath,{
                 userId:localStorageUserId,
                 occupation: occupation,
                 description: description,
-                aboutImageLink: aboutImageLink,
-                backgroundImageLink: backgroundImageLink,
+                aboutImageLink: aboutImageURL,
+                backgroundImageLink: backgroundImageURL,
             });
             //console.log(response.data);
             setAboutUpdateStatus(response.data.responseMessage);
@@ -125,6 +175,7 @@ const AboutUpdate = () => {
     
     useEffect(() => {
       checkIfAboutExists();
+      //console.log(aboutImage);
     }, []);
 
     if (loading) {

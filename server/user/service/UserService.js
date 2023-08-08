@@ -16,7 +16,8 @@ class UserService {
 
   async getUser(portfolioRequest) {
     try {      
-      const user = await findByName(portfolioRequest.name);
+      const user = await findByNameWithoutCase(portfolioRequest.name);
+      //console.log(portfolioRequest.name);
       if (user) {
         const about = await findAboutById(user.id);
         const service = await findAllServicesById(user.id);
@@ -95,6 +96,24 @@ async function findByName(name) {
   try {
     const query = 'SELECT * FROM users WHERE name = $1';
     const values = [name];
+    const result = await pool.query(query, values);
+    if (result.rows.length == 1) {
+     // console.log(result.rows[0]);
+      return result.rows[0];
+    }
+    else{
+      return null;
+    }
+  } 
+  catch (error) {
+    throw error;
+  }
+}
+
+async function findByNameWithoutCase(name) {
+  try {
+    const query = 'SELECT * FROM users WHERE name ILIKE $1';
+    const values = [`%${name}%`];
     const result = await pool.query(query, values);
     if (result.rows.length == 1) {
      // console.log(result.rows[0]);

@@ -1,4 +1,4 @@
-import React,{useEffect, useContext} from 'react'
+import React,{useState, useEffect, useContext} from 'react'
 import {Routes, Route, BrowserRouter, useParams, Navigate} from "react-router-dom";
 import './App.css';
 import Homepage from './components/Homepage';
@@ -9,6 +9,7 @@ import Login from './components/Login';
 import Portfolio from './components/Portfolio';
 import Signup from './components/Signup';
 import Profile from './components/Profile';
+import Loading from './components/Loading';
 
 import { NameProvider } from './contexts/NameContext';
 import  PortfolioContext, {PortfolioProvider } from './contexts/PortfolioContext';
@@ -17,6 +18,7 @@ import ProjectsAdd from './components/ProfileEditComponents/ProjectsAdd';
 import ServiceAdd from './components/ProfileEditComponents/ServiceAdd';
 import ContactsUpdate from './components/ProfileEditComponents/ContactsUpdate';
 import AboutUpdate from './components/ProfileEditComponents/AboutUpdate';
+import PortfolioSearch from './components/PortfolioSearch';
 
 
 const App = () =>{
@@ -49,6 +51,7 @@ const App = () =>{
                 <Route path="/profile/serviceadd" element={checkToken() ? <Navigate to="/" /> : <ServiceAdd />} />
                 <Route path="/profile/contactsupdate" element={checkToken() ? <Navigate to="/" /> : <ContactsUpdate />} />
                 <Route path="/portfolio/:name" element={<DynamicPage />} />
+                <Route path="/portfoliosearch" element={<PortfolioSearch />} />
               </Routes>
             </UserProvider>
           </PortfolioProvider>
@@ -59,6 +62,7 @@ const App = () =>{
 }
 
 const DynamicPage = () => {
+  const [loading, setLoading] = useState(true);
   const { name } = useParams();
   const {setPortfolio} = useContext(PortfolioContext);
 
@@ -66,21 +70,30 @@ const DynamicPage = () => {
     
     try {
       const apipath = `${process.env.REACT_APP_API_URI}/user/portfolio`;
+      //const apipath = `http://localhost:3001/user/portfolio`;
       await Axios.post(apipath,{
         name:name,
       }).then((response) =>{
         //console.log(response.data.data.userEntity);
         if(response.data.message === "user found")setPortfolio(response.data.data.userEntity);
+        setLoading(false);
       });
     } 
     catch (error) {
       console.error('Error while saving object:', error);
+      setLoading(false);
     }
   };
 
   useEffect(() => {
     savePortfolio(name);
   }, [name]);
+
+  if (loading) {
+    return(
+      <Loading/>
+    );
+  }
 
   return (
       <>
