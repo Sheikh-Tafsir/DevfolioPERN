@@ -14,6 +14,17 @@ class UserService {
     this.userRepository = userRepository;
   }
 
+  async getAllUser() {
+    try {      
+      const userEntities = await findAllNames(); 
+      return userEntities; 
+  
+    } catch (error) {
+      console.error('Error occurred during getUser:', error);
+      return null;
+    }
+  }
+
   async getUser(portfolioRequest) {
     try {      
       const user = await findByNameWithoutCase(portfolioRequest.name);
@@ -90,6 +101,25 @@ function generateJwtToken(name, password) {
 
   // return token;
   return "123";
+}
+
+
+
+async function findAllNames() {
+  try {
+    const query = 'SELECT name FROM users';
+    const result = await pool.query(query);
+    //console.log(result.rows);
+    if (result.rows.length >= 1) {
+      return result.rows;
+    }
+    else{
+      return null;
+    }
+  } 
+  catch (error) {
+    throw error;
+  }
 }
 
 async function findByName(name) {

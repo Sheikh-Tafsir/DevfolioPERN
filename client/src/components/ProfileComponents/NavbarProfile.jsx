@@ -52,7 +52,7 @@ const Navbar = () => {
           <a href="#service">Service</a>
           <a href="#portfolio">Portfolio</a>
           <a href="#contacts">Contact Me</a>
-          <Link to="/portfoliosearch">Search</Link>
+          <Link to="/searchuser">Search</Link>
           <Button className="bg-orange-600 h-10 lg:h-8 lg:w-16 2xl:h-12 2xl:w-20 rounded-lg transform -translate-y-2 logout-button" onClick={logout}>Logout</Button>
         </div>
         <div className="navbar-extra" onClick={navbarChange}>

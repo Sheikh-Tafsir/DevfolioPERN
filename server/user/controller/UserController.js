@@ -12,6 +12,14 @@ const PortfolioRequest = require('../domain/PortfolioRequest');
 const UserService = require('../service/UserService');
 const userService = new UserService();
 
+//Get route for '/allusers'
+router.get('/allusers', jsonParser, async (req, res) => {
+  const response = await userService.getAllUser();
+  const apiResponse = ResponseUtil.createResponse("found",  response);
+  res.status(200).json(apiResponse);
+});
+
+
 // POST route for '/portfolio'
 router.post('/portfolio', jsonParser, async (req, res) => {
   try {

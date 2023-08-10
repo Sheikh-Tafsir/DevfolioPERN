@@ -1,0 +1,28 @@
+
+.search-user{
+    background-color:#2b2a2b; 
+    height:100vh;
+}
+.search-bar-box{
+    background-color: #212022;
+    height:80vh;
+}
+.search-user-form{
+    /* background-color:#2b2a2b;  */
+    /* height:6vh; */
+    background-color: #212022;
+    border-bottom: 1px solid white;
+    
+}
+.search-user-form input{
+    background-color: #212022;
+    
+}
+.search-icon{
+    /* font-size: 1.5rem; */
+    color:rgba(255,255,255,0.6);
+}
+.userCard{
+    background-color:#2b2a2b; 
+    height:7vh;
+}

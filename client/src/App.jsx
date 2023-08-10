@@ -18,7 +18,7 @@ import ProjectsAdd from './components/ProfileEditComponents/ProjectsAdd';
 import ServiceAdd from './components/ProfileEditComponents/ServiceAdd';
 import ContactsUpdate from './components/ProfileEditComponents/ContactsUpdate';
 import AboutUpdate from './components/ProfileEditComponents/AboutUpdate';
-import PortfolioSearch from './components/PortfolioSearch';
+import SearchUser from './components/SearchUser';
 
 
 const App = () =>{
@@ -51,7 +51,7 @@ const App = () =>{
                 <Route path="/profile/serviceadd" element={checkToken() ? <Navigate to="/" /> : <ServiceAdd />} />
                 <Route path="/profile/contactsupdate" element={checkToken() ? <Navigate to="/" /> : <ContactsUpdate />} />
                 <Route path="/portfolio/:name" element={<DynamicPage />} />
-                <Route path="/portfoliosearch" element={<PortfolioSearch />} />
+                <Route path="/searchuser" element={<SearchUser />} />
               </Routes>
             </UserProvider>
           </PortfolioProvider>
