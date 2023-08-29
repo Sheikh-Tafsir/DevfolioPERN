@@ -21,18 +21,18 @@ npm install
 
 ## 3. Create .env files in the root of the project directory and add the following environment variables:
 ### Client side:
-IMGBB_API
-REACT_APP_API_URI
+- IMGBB_API
+- REACT_APP_API_URI
 
 ### Server side:
-POSTGRES_URL
-POSTGRES_PRISMA_URL
-POSTGRES_URL_NON_POOLING
-POSTGRES_USER
-POSTGRES_HOST
-POSTGRES_PASSWOR
-POSTGRES_DATABASE
-POSTGRES_PORT
+- POSTGRES_URL
+- POSTGRES_PRISMA_URL
+- POSTGRES_URL_NON_POOLING
+- POSTGRES_USER
+- POSTGRES_HOST
+- POSTGRES_PASSWOR
+- POSTGRES_DATABASE
+- POSTGRES_PORT
 
 
 ## 4. Run the development server:
