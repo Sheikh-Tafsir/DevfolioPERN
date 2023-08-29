@@ -51,7 +51,7 @@ The application will be running on localhost:3001.
 
 ## 5. Deployed to Vercel
 Live link of the project
-[httpdevfolio-pern.vercel.app](https://devfolio-pern.vercel.app/)
+[http://devfolio-pern.vercel.app](https://devfolio-pern.vercel.app/)
 
 This is the Github link of Spring Boot and MySQL code version
 [https://github.com/Sheikh-Tafsir/Devfolio](https://github.com/Sheikh-Tafsir/Devfolio)
