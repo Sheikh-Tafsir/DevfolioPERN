@@ -23,8 +23,6 @@ import SearchUser from './components/SearchUser';
 
 const App = () =>{
 
-  // localStorage.setItem("localStorageUsername");
-  // localStorage.setItem("localStorageUserId");
   let token = localStorage.getItem('token');
 
   const checkToken = () => (token == null || token == "null" || token == "undefined" || token == "");

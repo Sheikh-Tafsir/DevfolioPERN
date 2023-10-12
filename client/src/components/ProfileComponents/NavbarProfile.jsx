@@ -31,9 +31,10 @@ const Navbar = () => {
   };
 
   const logout = () => {
-    localStorage.setItem("localStorageUsername",null);
+    //localStorage.setItem("localStorageUsername",null);
+    localStorage.setItem("DevfolioLocalStorageUsername",null);
     localStorage.setItem("token",null);
-    localStorage.setItem("localStorageUserId",null);
+    // localStorage.setItem("localStorageUserId",null);
     //navigate("/");
     window.open("/", "_top");
   }

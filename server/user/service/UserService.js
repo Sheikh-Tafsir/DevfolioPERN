@@ -27,8 +27,9 @@ class UserService {
 
   async getUser(portfolioRequest) {
     try {      
-      const user = await findByNameWithoutCase(portfolioRequest.name);
-      //console.log(portfolioRequest.name);
+      const user = await findByName(portfolioRequest.name);
+      // console.log(portfolioRequest.name);
+      // console.log(user);
       if (user) {
         const about = await findAboutById(user.id);
         const service = await findAllServicesById(user.id);

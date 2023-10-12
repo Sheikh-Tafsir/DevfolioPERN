@@ -48,8 +48,9 @@ const Login = () => {
                 setLoginStatus("please wait");
                 if(response.data){
                     setLoginStatus("logging in");
-                    localStorage.setItem("localStorageUsername",username);
-                    localStorage.setItem("localStorageUserId",response.data.data.id);
+                    // localStorage.setItem("localStorageUsername",username);
+                    // localStorage.setItem("localStorageUserId",response.data.data.id);
+                    localStorage.setItem("DevfolioLocalStorageUsername",username);
                     localStorage.setItem('token', response.data.data.token);
                     //setLoggedIn(true);
                     setTimeout(() => {

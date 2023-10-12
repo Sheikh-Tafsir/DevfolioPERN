@@ -15,13 +15,13 @@ import  PortfolioContext from '../contexts/PortfolioContext';
 const Profile = () => {
   //const {name,setName} = useContext(NameContext);
   const [loading, setLoading] = useState(true);
-  let name=localStorage.getItem("localStorageUsername");
+  // let name=localStorage.getItem("localStorageUsername");
+  let name=localStorage.getItem("DevfolioLocalStorageUsername");
   // let token = localStorage.getItem('token');
   const {setPortfolio} = useContext(PortfolioContext);
 
 
   const savePortfolio = async (name) => {
-  
     const apipath= `${process.env.REACT_APP_API_URI}/user/portfolio`;
     //const apipath= `http://localhost:3001/user/portfolio`;
     try {
@@ -33,6 +33,10 @@ const Profile = () => {
           setPortfolio(response.data.data.userEntity);
           setLoading(false);
         }
+        else{
+          console.error(response.data);
+          setLoading(false);
+        }
       });
     } 
     catch (error) {
@@ -42,6 +46,7 @@ const Profile = () => {
   };
 
   useEffect(() => {
+    //console.log(name);
     savePortfolio(name);
   }, [name]);
 

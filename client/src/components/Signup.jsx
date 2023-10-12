@@ -45,9 +45,10 @@ const Signup = () => {
                 if(response.data){
                     setRegStatus("user data saved");
                     
-                    localStorage.setItem("localStorageUsername",username);
-                    localStorage.setItem("localStorageUserId",response.data.data.id);
-                    localStorage.setItem('token', response.data.data.token)
+                    // localStorage.setItem("localStorageUsername",username);
+                    // localStorage.setItem("localStorageUserId",response.data.data.id);
+                    localStorage.setItem("DevfolioLocalStorageUsername",username);
+                    localStorage.setItem('token', response.data.data.token);
                     
                     setTimeout(() => {
                         //navigate("/profile");
