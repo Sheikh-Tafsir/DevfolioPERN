@@ -19,8 +19,6 @@ const AboutProfile = () => {
 
   return (
     <div className="about">
-        {/* <p className='bg-red-600 h-10'>hsjdhfjhsjkfhjkasf</p> */}
-        
         {localStorage.getItem('token') != null ? (
             <Link to="/profile/aboutupdate" className='bg-red-600 h-10'>
                 <FiEdit className="absolute right-6 lg:text-base 2xl:text-xl mt-4 text-white hover:text-red-200"/>
@@ -29,7 +27,7 @@ const AboutProfile = () => {
             <div></div>
         )}
         
-        {aboutData != null ? 
+        {(aboutData !== null && aboutData.length !== 0) ? 
             (aboutData.map((curElem)=>{
                 return(
                 <div className="pt-1 lg:pt-0 lg:flex pb-20" id="about" key={curElem.id}>
@@ -61,7 +59,6 @@ const AboutProfile = () => {
                         <div className="w-4/5 lg:w-2/3 ml-10 lg:ml-0 lg:mt-25 2xl:mt-40" >
                         <p className="flex  text-white lg:text-xs 2xl:text-sm pt-2 pb-2">Know about me</p>
                             <div className="flex text-3xl lg:text-3xl 2xl:text-4xl font-bold mt-10 lg:mt-0"><p>About</p><p className="text-orange-600 ml-2">Me</p></div>
-                            <button className="bg-orange-600 w-32 lg:w-24 h-8 lg:h-8 xl:w-32 xl:h-11 lg:text-sm 2xl:text-lg font-semibold pb-0.5 mt-10">More About</button>
                         </div>
                     </div>
                 </div>
